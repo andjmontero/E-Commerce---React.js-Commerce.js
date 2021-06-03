@@ -1,0 +1,55 @@
+body {
+  font-family: Poppins, sans-serif;
+}
+
+div.brand {
+  padding: 10px;
+  background-color: #333375;
+  border-right: solid 2px burlywood;
+}
+
+div.brand h1 {
+  margin: auto;
+  color: burlywood;
+  font-size: 35px;
+}
+
+div.links {
+  padding: 20px;
+  background-color: #333375;
+}
+
+ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  margin: auto;
+}
+
+ul li {
+  text-decoration: none;
+  list-style: none;
+  font-size: 20px;
+}
+
+ul li .cart-icon {
+  font-size: 35px;
+  color: white;
+  cursor: pointer;
+}
+
+ul li .cart-icon:hover {
+  color: #131336;
+}
+
+ul li a {
+  color: white;
+  text-decoration: none;
+}
+/*# sourceMappingURL=styles.css.map */

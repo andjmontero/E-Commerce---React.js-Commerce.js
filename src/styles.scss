@@ -1,0 +1,44 @@
+body {
+  font-family: Poppins, sans-serif;
+}
+div.brand {
+  padding: 10px;
+  background-color: rgb(51, 51, 117);
+  border-right: solid 2px burlywood;
+
+  h1 {
+    margin: auto;
+    color: burlywood;
+    font-size: 35px;
+  }
+}
+div.links {
+  padding: 20px;
+  background-color: rgb(51, 51, 117);
+}
+ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+
+  margin: auto;
+
+  li {
+    text-decoration: none;
+    list-style: none;
+    font-size: 20px;
+    .cart-icon {
+      font-size: 35px;
+      color: white;
+      cursor: pointer;
+    }
+    .cart-icon:hover {
+      color: rgb(19, 19, 54);
+    }
+
+    a {
+      color: white;
+      text-decoration: none;
+    }
+  }
+}
