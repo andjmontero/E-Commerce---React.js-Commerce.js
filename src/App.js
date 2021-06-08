@@ -1,11 +1,17 @@
-import "./App.css";
-import "bootstrap/dist/css/bootstrap.min.css";
-import NavBar from "./components/NavBar.js";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import "./index.css";
+import Products from "./components/Products/Products";
+
+import NavBar from "./components/NavBar/NavBar.js";
 function App() {
   return (
-    <div className="App">
-      <NavBar />
-    </div>
+    <Router>
+      <div>
+        <NavBar />
+        <Products />
+        <Switch></Switch>
+      </div>
+    </Router>
   );
 }
 
