@@ -10,7 +10,7 @@ import { NavLink } from "react-router-dom";
 import { Badge } from "@material-ui/core";
 import useStyles from "./styles";
 
-function NavBar() {
+function NavBar({ ToggleDrawer }) {
   const classes = useStyles();
   return (
     <div>
@@ -36,6 +36,7 @@ function NavBar() {
               className={classes.menuButton}
               color="inherit"
               aria-label="menu"
+              onClick={() => ToggleDrawer(true)}
             >
               <Badge badgeContent={2} color="error">
                 <ShoppingCartIcon className={classes.cartIcon} />
