@@ -1,5 +1,5 @@
 import { Grid } from "@material-ui/core";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Product from "./Product/Product";
 import useStyles from "./styles";
 
@@ -50,38 +50,30 @@ const list = [
 
 const Products = () => {
   const classes = useStyles();
-  const [array, setArray] = useState([]);
 
-  // Use un useEffect para que se ejecute apenas arranca la pagina
-  // Dentro defino la promise, y la ejecuto para obtener el valor de la promesa
-  //Uso un estado para guardar los valores que me devuelve la promesa
-  useEffect(() => {
-    let promesa = () => {
-      let promise = new Promise((resolve, reject) => {
-        setTimeout(() => {
-          if (list !== []) {
-            resolve(list);
-          }
-          reject("Items not available");
-        }, 3000);
-      });
-      return promise;
-    };
-
-    promesa().then((response) => setArray(response));
-  }, []);
+  let promise = new Promise((resolve, reject) => {
+    setTimeout(() => {
+      const productList = list;
+      if (productList != []) {
+        resolve(list);
+      }
+      reject("Items not available");
+    }, 3000);
+  });
 
   return (
     <div className={classes.mainGrid}>
       <Grid container justify="center" spacing={6} md={12} lg={10}>
-        {/* Y aca verifico que el estado array no este vacio y uso ese array para el map */}
-        {array &&
-          array.map((product) => {
-            return (
+        {promise
+          .then((list) => {
+            list.map((product) => (
               <Grid key={product.id} item xs={12} sm={6} md={4} lg={4}>
                 <Product product={product} />
               </Grid>
-            );
+            ));
+          })
+          .catch((message) => {
+            alert(message);
           })}
       </Grid>
     </div>
