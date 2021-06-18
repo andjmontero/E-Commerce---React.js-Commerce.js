@@ -50,39 +50,31 @@ const list = [
 
 const Products = () => {
   const classes = useStyles();
-  const [array, setArray] = useState([]);
+  const [data, setData] = useState(null);
 
-  // Use un useEffect para que se ejecute apenas arranca la pagina
-  // Dentro defino la promise, y la ejecuto para obtener el valor de la promesa
-  //Uso un estado para guardar los valores que me devuelve la promesa
   useEffect(() => {
-    let promesa = () => {
-      let promise = new Promise((resolve, reject) => {
-        setTimeout(() => {
-          if (list !== []) {
-            resolve(list);
-          }
-          reject("Items not available");
-        }, 3000);
+    fetch("https://pokeapi.co/api/v2/pokemon?limit=10")
+      .then((response) => response.json())
+      .then((response) => {
+        setData(response.results);
       });
-      return promise;
-    };
-
-    promesa().then((response) => setArray(response));
   }, []);
-
+  console.log(data);
   return (
     <div className={classes.mainGrid}>
-      <Grid container justify="center" spacing={6} md={12} lg={10}>
+      <Grid container justify="center" spacing={6}>
         {/* Y aca verifico que el estado array no este vacio y uso ese array para el map */}
-        {array &&
-          array.map((product) => {
+        {data !== null ? (
+          data.map((data, index) => {
             return (
-              <Grid key={product.id} item xs={12} sm={6} md={4} lg={4}>
-                <Product product={product} />
+              <Grid key={index} item xs={12} sm={6} md={4} lg={4}>
+                <Product data={data} />
               </Grid>
             );
-          })}
+          })
+        ) : (
+          <Grid>"Cargando"</Grid>
+        )}
       </Grid>
     </div>
   );
