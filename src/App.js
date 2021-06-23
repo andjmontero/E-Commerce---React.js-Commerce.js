@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./index.css";
 import Products from "./components/Products/Products";
+import Home from "./components/Home/Home";
 import Cart from "./components/Cart/Cart";
 import { Drawer } from "@material-ui/core";
 import NavBar from "./components/NavBar/NavBar.js";
@@ -18,8 +19,15 @@ function App() {
       </Drawer>
       <div>
         <NavBar ToggleDrawer={ToggleDrawer} />
-        <Products />
-        <Switch></Switch>
+
+        <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <Route exact path="/Products">
+            <Products />
+          </Route>
+        </Switch>
       </div>
     </Router>
   );

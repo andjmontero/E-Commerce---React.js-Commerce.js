@@ -14,7 +14,7 @@ function NavBar({ ToggleDrawer }) {
   const classes = useStyles();
   return (
     <div>
-      <AppBar position="static" className={classes.root}>
+      <AppBar className={classes.root}>
         <Toolbar>
           <Typography variant="h6" className={classes.title}>
             InStance
@@ -23,10 +23,10 @@ function NavBar({ ToggleDrawer }) {
             <NavLink className={classes.link} to="/">
               Home
             </NavLink>
-            <NavLink className={classes.link} to="/">
+            <NavLink className={classes.link} to="/Products">
               Products
             </NavLink>
-            <NavLink className={classes.link} to="/">
+            <NavLink className={classes.link} to="/Contact">
               Contact
             </NavLink>
           </div>

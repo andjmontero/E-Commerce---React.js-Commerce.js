@@ -62,7 +62,7 @@ const Products = () => {
   console.log(data);
   return (
     <div className={classes.mainGrid}>
-      <Grid container justify="center" spacing={6}>
+      <Grid container justify="center" spacing={2}>
         {/* Y aca verifico que el estado array no este vacio y uso ese array para el map */}
         {data !== null ? (
           data.map((data, index) => {

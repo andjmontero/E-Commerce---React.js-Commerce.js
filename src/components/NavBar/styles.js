@@ -1,7 +1,7 @@
 import { makeStyles } from "@material-ui/core/styles";
 
 export default makeStyles((theme) => ({
-  root: { backgroundColor: "wheat", color: "black" },
+  root: { backgroundColor: "#292f38", color: "white", position: "static" },
   title: {
     fontFamily: "Poppins, sans serif",
     textAlign: "center",
@@ -13,7 +13,7 @@ export default makeStyles((theme) => ({
     justifyContent: "space-evenly",
   },
   link: {
-    color: "black",
+    color: "white",
     textDecoration: "none",
     fontSize: "20px",
   },
