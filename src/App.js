@@ -11,11 +11,13 @@ function App() {
   const ToggleDrawer = (open) => {
     setState(open);
   };
-
+  const sumbitPurchase = () => {
+    alert("Compra Exitosa");
+  };
   return (
     <Router>
       <Drawer anchor="right" open={state}>
-        <Cart ToggleDrawer={ToggleDrawer} />
+        <Cart sumbitPurchase={sumbitPurchase} ToggleDrawer={ToggleDrawer} />
       </Drawer>
       <div>
         <NavBar ToggleDrawer={ToggleDrawer} />

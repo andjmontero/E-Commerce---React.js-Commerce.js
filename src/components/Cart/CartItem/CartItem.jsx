@@ -13,13 +13,15 @@ import IconButton from "@material-ui/core/IconButton";
 import { useState } from "react";
 export default function MediaCard() {
   const classes = useStyles();
-const[itemCount, setItemCount]= useState(0);
-const addAmount=(amount)=>{
-    setItemCount(amount + 1 );
-}
-const substractAmount=(amount)=>{
-    if(amount>0){setItemCount(amount - 1)};
-}
+  const [itemCount, setItemCount] = useState(1);
+  const addAmount = (amount) => {
+    setItemCount(amount + 1);
+  };
+  const substractAmount = (amount) => {
+    if (amount > 1) {
+      setItemCount(amount - 1);
+    }
+  };
   return (
     <Card className={classes.root}>
       <CardActionArea>
@@ -33,16 +35,22 @@ const substractAmount=(amount)=>{
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-           Mouse
+            Mouse
           </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-           
-          </Typography>
+          <Typography
+            variant="body2"
+            color="textSecondary"
+            component="p"
+          ></Typography>
         </CardContent>
       </CardActionArea>
       <CardActions>
-       <Typography> <Button onClick={()=>substractAmount(itemCount)}>-</Button>{itemCount}<Button onClick={()=> addAmount(itemCount)}>+</Button></Typography> 
-
+        <Typography>
+          {" "}
+          <Button onClick={() => substractAmount(itemCount)}>-</Button>
+          {itemCount}
+          <Button onClick={() => addAmount(itemCount)}>+</Button>
+        </Typography>
       </CardActions>
     </Card>
   );
