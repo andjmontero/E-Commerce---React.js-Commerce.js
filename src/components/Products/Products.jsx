@@ -48,33 +48,17 @@ const list = [
   },
 ];
 
-const Products = () => {
+const Products = ({ products, addToCart, cart }) => {
   const classes = useStyles();
-  const [data, setData] = useState(null);
 
-  useEffect(() => {
-    fetch("https://pokeapi.co/api/v2/pokemon?limit=10")
-      .then((response) => response.json())
-      .then((response) => {
-        setData(response.results);
-      });
-  }, []);
-  console.log(data);
   return (
     <div className={classes.mainGrid}>
       <Grid container justify="center" spacing={2}>
-        {/* Y aca verifico que el estado array no este vacio y uso ese array para el map */}
-        {data !== null ? (
-          data.map((data, index) => {
-            return (
-              <Grid key={index} item xs={12} sm={6} md={4} lg={4}>
-                <Product data={data} />
-              </Grid>
-            );
-          })
-        ) : (
-          <Grid>"Cargando"</Grid>
-        )}
+        {products.map((product) => (
+          <Grid key={product.id} item xs={12} sm={6} md={4} lg={3}>
+            <Product product={product} addToCart={addToCart} cart={cart} />
+          </Grid>
+        ))}
       </Grid>
     </div>
   );

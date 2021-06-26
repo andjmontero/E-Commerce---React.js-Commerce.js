@@ -11,7 +11,7 @@ import useStyles from "./styles";
 import CardHeader from "@material-ui/core/CardHeader";
 import IconButton from "@material-ui/core/IconButton";
 import { useState } from "react";
-export default function MediaCard() {
+export default function MediaCard({ item }) {
   const classes = useStyles();
   const [itemCount, setItemCount] = useState(1);
   const addAmount = (amount) => {
@@ -30,12 +30,12 @@ export default function MediaCard() {
         </IconButton>
         <CardMedia
           className={classes.media}
-          image="https://images.unsplash.com/photo-1618499890638-3a0dd4b278b7?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80"
-          title="Contemplative Reptile"
+          image={item.media.source}
+          title={item.name}
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-            Mouse
+            {item.name}
           </Typography>
           <Typography
             variant="body2"
@@ -50,6 +50,7 @@ export default function MediaCard() {
           <Button onClick={() => substractAmount(itemCount)}>-</Button>
           {itemCount}
           <Button onClick={() => addAmount(itemCount)}>+</Button>
+          {item.price.formatted_with_symbol}
         </Typography>
       </CardActions>
     </Card>
