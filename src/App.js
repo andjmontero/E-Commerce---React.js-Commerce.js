@@ -5,8 +5,9 @@ import Home from "./components/Home/Home";
 import Cart from "./components/Cart/Cart";
 import { Drawer } from "@material-ui/core";
 import NavBar from "./components/NavBar/NavBar.js";
-import { useState, useEffect } from "react";
+import { useState, useEffect, createContext } from "react";
 import { commerce } from "./lib/commerce";
+import { CartProvider } from "./CartContext";
 function App() {
   //------Drawer
   const [state, setState] = useState();
@@ -20,47 +21,30 @@ function App() {
     const { data } = await commerce.products.list();
     setProducts(data);
   };
-  //----Cart List
-  const [cart, setCart] = useState({});
-
-  const fetchCart = async () => {
-    const cart = await commerce.cart.retrieve();
-    setCart(cart);
-  };
-  //---Add to Cart
-  const handleAddToCart = async (productId, quantity) => {
-    const item = await commerce.cart.add(productId, quantity);
-    setCart(item.cart);
-  };
 
   const sumbitPurchase = () => {
     alert("Compra Exitosa");
   };
   useEffect(() => {
     fetchProducts();
-    fetchCart();
   }, []);
   return (
     <Router>
-      <Drawer anchor="right" open={state}>
-        <Cart
-          sumbitPurchase={sumbitPurchase}
-          ToggleDrawer={ToggleDrawer}
-          cart={cart}
-        />
-      </Drawer>
+      <CartProvider>
+        <Drawer anchor="right" open={state}>
+          <Cart sumbitPurchase={sumbitPurchase} ToggleDrawer={ToggleDrawer} />
+        </Drawer>
+      </CartProvider>
       <div>
-        <NavBar ToggleDrawer={ToggleDrawer} cartAmount={cart.total_items} />
+        <NavBar ToggleDrawer={ToggleDrawer} />
         <Switch>
           <Route exact path="/">
             <Home />
           </Route>
           <Route exact path="/Products">
-            <Products
-              products={products}
-              addToCart={handleAddToCart}
-              cart={cart}
-            />
+            <CartProvider>
+              <Products products={products} />
+            </CartProvider>
           </Route>
         </Switch>
       </div>

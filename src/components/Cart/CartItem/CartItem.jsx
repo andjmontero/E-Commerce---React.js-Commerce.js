@@ -46,7 +46,6 @@ export default function MediaCard({ item }) {
       </CardActionArea>
       <CardActions>
         <Typography>
-          {" "}
           <Button onClick={() => substractAmount(itemCount)}>-</Button>
           {itemCount}
           <Button onClick={() => addAmount(itemCount)}>+</Button>
