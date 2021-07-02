@@ -3,7 +3,7 @@ import "./index.css";
 import Products from "./components/Products/Products";
 import Home from "./components/Home/Home";
 import Cart from "./components/Cart/Cart";
-import { Drawer } from "@material-ui/core";
+import { Drawer, LinearProgress } from "@material-ui/core";
 import NavBar from "./components/NavBar/NavBar.js";
 import { useState, useEffect, createContext } from "react";
 import { commerce } from "./lib/commerce";
@@ -16,10 +16,12 @@ function App() {
   };
 
   //-----Product List Fetch
+  const [loading, setLoading] = useState(false);
   const [products, setProducts] = useState([]);
   const fetchProducts = async () => {
     const { data } = await commerce.products.list();
     setProducts(data);
+    setLoading(true);
   };
 
   const sumbitPurchase = () => {
@@ -43,7 +45,11 @@ function App() {
           </Route>
           <Route exact path="/Products">
             <CartProvider>
-              <Products products={products} />
+              {loading ? (
+                <Products products={products} />
+              ) : (
+                <LinearProgress color="secondary" />
+              )}
             </CartProvider>
           </Route>
         </Switch>
