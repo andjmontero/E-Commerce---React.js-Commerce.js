@@ -24,9 +24,6 @@ function App() {
     setLoading(true);
   };
 
-  const sumbitPurchase = () => {
-    alert("Compra Exitosa");
-  };
   useEffect(() => {
     fetchProducts();
   }, []);
@@ -34,26 +31,25 @@ function App() {
     <Router>
       <CartProvider>
         <Drawer anchor="right" open={state}>
-          <Cart sumbitPurchase={sumbitPurchase} ToggleDrawer={ToggleDrawer} />
+          <Cart ToggleDrawer={ToggleDrawer} />
         </Drawer>
-      </CartProvider>
-      <div>
-        <NavBar ToggleDrawer={ToggleDrawer} />
-        <Switch>
-          <Route exact path="/">
-            <Home />
-          </Route>
-          <Route exact path="/Products">
-            <CartProvider>
+
+        <div>
+          <NavBar ToggleDrawer={ToggleDrawer} />
+          <Switch>
+            <Route exact path="/">
+              <Home products={products} />
+            </Route>
+            <Route exact path="/Products">
               {loading ? (
                 <Products products={products} />
               ) : (
                 <LinearProgress color="secondary" />
               )}
-            </CartProvider>
-          </Route>
-        </Switch>
-      </div>
+            </Route>
+          </Switch>
+        </div>
+      </CartProvider>
     </Router>
   );
 }

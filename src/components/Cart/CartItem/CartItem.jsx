@@ -8,26 +8,14 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import useStyles from "./styles";
-import CardHeader from "@material-ui/core/CardHeader";
 import IconButton from "@material-ui/core/IconButton";
-import { useState } from "react";
+import { UseCart } from "../../../CartContext";
 export default function MediaCard({ item }) {
   const classes = useStyles();
-  const [itemCount, setItemCount] = useState(1);
-  const addAmount = (amount) => {
-    setItemCount(amount + 1);
-  };
-  const substractAmount = (amount) => {
-    if (amount > 1) {
-      setItemCount(amount - 1);
-    }
-  };
+  const { cart, handleRemoveFromCart, handleUpdateCartQty } = UseCart();
   return (
     <Card className={classes.root}>
       <CardActionArea>
-        <IconButton>
-          <CloseIcon />
-        </IconButton>
         <CardMedia
           className={classes.media}
           image={item.media.source}
@@ -46,11 +34,29 @@ export default function MediaCard({ item }) {
       </CardActionArea>
       <CardActions>
         <Typography>
-          <Button onClick={() => substractAmount(itemCount)}>-</Button>
-          {itemCount}
-          <Button onClick={() => addAmount(itemCount)}>+</Button>
-          {item.price.formatted_with_symbol}
+          <Button
+            className={classes.btnAmount}
+            onClick={() => handleUpdateCartQty(item.id, item.quantity - 1)}
+          >
+            -{" "}
+          </Button>
+          <Typography>&nbsp;{item.quantity}&nbsp;</Typography>
+          <Button
+            className={classes.btnAmount}
+            onClick={() => handleUpdateCartQty(item.id, item.quantity + 1)}
+          >
+            +
+          </Button>
+          {item.line_total.formatted_with_symbol}
         </Typography>
+        <Button
+          variant="contained"
+          type="button"
+          color="secondary"
+          onClick={() => handleRemoveFromCart(item.id)}
+        >
+          Remove
+        </Button>
       </CardActions>
     </Card>
   );

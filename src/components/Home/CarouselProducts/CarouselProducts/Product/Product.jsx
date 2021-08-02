@@ -13,25 +13,25 @@ import {
 import { AddShoppingCart } from "@material-ui/icons";
 import useStyles from "./styles";
 
-import { UseCart } from "../../../CartContext";
+import { UseCart } from "../../../../../CartContext";
 
-const Product = ({ product }) => {
+const Product = ({ item }) => {
   const classes = useStyles();
 
-  const { handleAddToCart, cart, setState } = UseCart(); //UseContext Consumer
+  const { handleAddToCart, cart } = UseCart(); //UseContext Consumer
 
   return (
     <div className={classes.card}>
       <Card className={classes.root}>
         <CardMedia
           component="img"
-          image={product.media.source}
-          alt={product.name}
+          image={item.media.source}
+          alt={item.name}
           height="250"
         />
         <CardContent className={classes.cardContent}>
           <Typography gutterBottom variant="h5" component="h2">
-            {product.name}
+            {item.name}
           </Typography>
           <Typography
             variant="body2"
@@ -42,11 +42,11 @@ const Product = ({ product }) => {
 
         <CardActions className={classes.cardActions}>
           <Typography variant="h6">
-            {product.price.formatted_with_symbol}
+            {item.price.formatted_with_symbol}
           </Typography>
           <IconButton
             onClick={() => {
-              handleAddToCart(product);
+              handleAddToCart(item);
             }}
           >
             <AddShoppingCart />

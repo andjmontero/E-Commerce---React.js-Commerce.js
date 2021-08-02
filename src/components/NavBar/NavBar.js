@@ -5,13 +5,14 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from "@material-ui/icons/Menu";
+import { UseCart } from "../../CartContext";
 import { NavLink } from "react-router-dom";
 import { Badge } from "@material-ui/core";
 import useStyles from "./styles";
 
 function NavBar({ ToggleDrawer, cartAmount }) {
   const classes = useStyles();
+  const { cart } = UseCart();
   return (
     <div>
       <AppBar className={classes.root}>
@@ -38,7 +39,7 @@ function NavBar({ ToggleDrawer, cartAmount }) {
               aria-label="menu"
               onClick={() => ToggleDrawer(true)}
             >
-              <Badge badgeContent={cartAmount} color="error">
+              <Badge badgeContent={cart.total_items} color="error">
                 <ShoppingCartIcon className={classes.cartIcon} />
               </Badge>
             </IconButton>

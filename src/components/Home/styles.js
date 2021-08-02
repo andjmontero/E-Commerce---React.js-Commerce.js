@@ -1,11 +1,11 @@
 import { makeStyles } from "@material-ui/core/styles";
-import React from "react";
+
 import Background from "../../assets/Home.jpg";
 
 export default makeStyles(() => ({
   home: {
     backgroundImage: `url(${Background})`,
-    height: "calc(100vh - 64px)",
+    height: "70vh",
     backgroundPosition: "center",
     display: "flex",
   },
